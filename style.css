@@ -102,7 +102,7 @@ nav .logo {
 nav ul {
   display: inline-flex;
   margin: 0 10%;
-  color: white;
+  color: red;
 }
 
 nav ul li {
