@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+header {
+  position: absolute;
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+}
+
+/* Backgrounds */
+
+.bg-mountain {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: url(./img/bg-mountain.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  z-index: 1;
+  animation: bg-mountain-move 1s;
+  animation-fill-mode: forwards;
+  left: -30vw;
+  animation-timing-function: linear;
+}
+
+.bg-road {
+  position: absolute;
+  height: 100vh;
+  width: 104vw;
+  background: url(./img/bg-road.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 80%;
+  z-index: 2;
+  animation: bg-road-move 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes bg-mountain-move {
+  from {
+    left: -30vw;
+  }
+  to {
+    left: -40vw;
+  }
+}
+
+@keyframes bg-road-move {
+  from {
+    left: 0vw;
+  }
+  to {
+    left: -4vw;
+  }
+}
+
+/* NavBar */
+
+nav {
+  position: relative;
+  z-index: 1000;
+  color: #000;
+  display: flex;
+  padding: 15px 0;
+  opacity: 1;
+  animation: nav-opacity 0.6s;
+  animation-delay: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  height: 60px;
+}
+
+@keyframes nav-opacity {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+nav .logo {
+  margin-left: 5%;
+}
+nav ul {
+  display: inline-flex;
+  margin: 0 10%;
+  color: white;
+}
+
+nav ul li {
+  list-style: none;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+nav .search {
+  margin: 0 10%;
+}
+
+.services {
+  background: blue;
+}
+
+.contact {
+  background: red;
+}
+
+section {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 15;
+}
+
+.anim-down-lier {
+  display: block;
+  left: 0;
+  animation: down-lier 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+.anim-up-lier {
+  display: block;
+  left: 100%;
+  animation: up-lier 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.back {
+  animation-direction: reverse;
+  animation-fill-mode: none;
+  animation-timing-function: ease-in;
+}
+
+.active {
+  display: block;
+}
+
+@keyframes up-lier {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes down-lier {
+  from {
+    left: 0%;
+  }
+
+  to {
+    left: -20%;
+  }
+}
+
+.bg-mountain-down {
+  animation: none;
+  left: -40vw;
+}
+.bg-road-down {
+  animation: bg-road-move-down-lier 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes bg-road-move-down-lier {
+  from {
+    left: -4vw;
+  }
+
+  to {
+    left: -14vw;
+  }
+}
