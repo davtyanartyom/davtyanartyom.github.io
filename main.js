@@ -101,11 +101,13 @@ window.touchStartPoint = 0;
 window.touchEndPoint = 0;
 
 function processTouchstart(e) {
+  alert(11111111);
   e.preventDefault();
   touchStartPoint = e.changedTouches[0].pageY;
 }
 
 function processTouchend(e) {
+  alert(45345345);
   e.preventDefault();
   touchEndPoint = e.changedTouches[0].pageY;
   checkingPoints(e);
