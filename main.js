@@ -1,3 +1,6 @@
+$(document).on("touchmove", function() {
+  $(document).trigger("mousewheel");
+});
 window.onkeydown = function(e) {
   switch (e.which) {
     case 37: // left
