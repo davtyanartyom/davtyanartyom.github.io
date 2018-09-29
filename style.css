@@ -4,10 +4,17 @@
 }
 
 body {
-  display: none;
+  display: block;
   height: 100vh;
   width: 100%;
   overflow: hidden;
+}
+
+.onload {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  background: rebeccapurple;
 }
 
 .container {
