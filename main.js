@@ -1,25 +1,33 @@
+window.processing = false;
+window.anim = true;
+
+function animChecking() {
+  setTimeout(function() {
+    anim = true;
+  }, 1000);
+}
 window.onkeydown = function(e) {
   switch (e.which) {
-    case 37: // left
-      break;
-
     case 38: // up
-      nextSection();
-      break;
-
-    case 39: // right
+      if (anim) {
+        anim = false;
+        backSection();
+        animChecking();
+      }
       break;
 
     case 40: // down
-      backSection();
+      if (anim) {
+        anim = false;
+        animChecking();
+        nextSection();
+      }
       break;
 
     default:
-      return; // exit this handler for other keys
+      return;
   }
 };
-
-window.processing = false;
 
 window.onwheel = function(e) {
   if (processing === false) {
@@ -35,7 +43,7 @@ window.onwheel = function(e) {
     }
     setTimeout(function() {
       processing = false;
-    }, 1600);
+    }, 1000);
   }
 };
 
@@ -95,8 +103,12 @@ function processTouchend(e) {
 function checkingPoints() {
   var check = touchEndPoint - touchStartPoint;
   if (check > 0) {
-    backSection();
+    if (!($(".active").data("page") == 1)) {
+      backSection();
+    }
   } else {
-    nextSection();
+    if ($(".active").data("page") != 3) {
+      nextSection();
+    }
   }
 }
