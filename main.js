@@ -2,16 +2,16 @@ window.processing = false;
 window.anim = true;
 
 function animChecking() {
+  anim = false;
   setTimeout(function() {
     anim = true;
-  }, 1100);
+  }, 1200);
 }
 window.onkeydown = function(e) {
   switch (e.which) {
     case 38: // up
       if (anim) {
         if (!($(".active").data("page") == 1)) {
-          anim = false;
           backSection();
           animChecking();
         }
@@ -21,7 +21,6 @@ window.onkeydown = function(e) {
     case 40: // down
       if (anim) {
         if ($(".active").data("page") != 3) {
-          anim = false;
           animChecking();
           nextSection();
         }
@@ -38,16 +37,22 @@ window.onwheel = function(e) {
     processing = true;
     if (e.deltaY > 0) {
       if ($(".active").data("page") != 3) {
-        nextSection();
+        if (anim) {
+          animChecking();
+          nextSection();
+        }
       }
     } else {
       if (!($(".active").data("page") == 1)) {
-        backSection();
+        if (anim) {
+          animChecking();
+          backSection();
+        }
       }
     }
     setTimeout(function() {
       processing = false;
-    }, 1000);
+    }, 1100);
   }
 };
 
@@ -68,7 +73,7 @@ function nextSection() {
     $(id).removeClass("anim-up-lier");
     $(".active").removeClass("active");
     $(id).addClass("active");
-  }, 1000);
+  }, 1100);
 }
 
 function backSection() {
