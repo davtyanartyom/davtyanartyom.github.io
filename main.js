@@ -113,11 +113,17 @@ function checkingPoints() {
   var check = touchEndPoint - touchStartPoint;
   if (check > 0) {
     if (!($(".active").data("page") == 1)) {
-      backSection();
+      if (anim) {
+        animChecking();
+        backSection();
+      }
     }
   } else {
     if ($(".active").data("page") != 3) {
-      nextSection();
+      if (anim) {
+        animChecking();
+        nextSection();
+      }
     }
   }
 }
