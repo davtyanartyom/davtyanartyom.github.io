@@ -1,5 +1,5 @@
 $(document).on("touchmove", function() {
-  $(document).trigger("mousewheel");
+  alert(12342345);
 });
 window.onkeydown = function(e) {
   switch (e.which) {
