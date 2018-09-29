@@ -1,18 +1,17 @@
-$(document).on("touchmove", function() {
-  alert(12342345);
-});
 window.onkeydown = function(e) {
   switch (e.which) {
     case 37: // left
       break;
 
     case 38: // up
+      nextSection();
       break;
 
     case 39: // right
       break;
 
     case 40: // down
+      backSection();
       break;
 
     default:
@@ -76,4 +75,28 @@ function backSection() {
     $(".active").removeClass("active");
     $(id).addClass("active");
   }, 1000);
+}
+
+window.addEventListener("touchend", processTouchend, false);
+window.addEventListener("touchstart", processTouchstart, false);
+
+window.touchStartPoint = 0;
+window.touchEndPoint = 0;
+
+function processTouchstart(e) {
+  touchStartPoint = e.changedTouches[0].pageY;
+}
+
+function processTouchend(e) {
+  touchEndPoint = e.changedTouches[0].pageY;
+  checkingPoints();
+}
+
+function checkingPoints() {
+  var check = touchEndPoint - touchStartPoint;
+  if (check > 0) {
+    backSection();
+  } else {
+    nextSection();
+  }
 }
