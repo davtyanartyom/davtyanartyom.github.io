@@ -1,5 +1,7 @@
 const load = () => {
-  $("body").css("display", "block");
+  $(document).ready(function() {
+    $("body").css("display", "block");
+  });
 };
 window.onload = load;
 
