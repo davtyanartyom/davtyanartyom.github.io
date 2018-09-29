@@ -1,6 +1,6 @@
 window.onload = function() {
   setUpEvents();
-  $(".onload").css("display", "none");
+  $("body").css("display", "block");
 };
 
 function setUpEvents() {
