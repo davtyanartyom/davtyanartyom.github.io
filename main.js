@@ -1,10 +1,10 @@
-window.processing = false;
-window.anim = true;
-
 const load = () => {
   $("body").css("display", "block");
 };
 window.onload = load;
+
+window.processing = false;
+window.anim = true;
 
 function animChecking() {
   anim = false;
