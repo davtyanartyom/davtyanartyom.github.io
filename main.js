@@ -1,6 +1,11 @@
 window.processing = false;
 window.anim = true;
 
+const load = () => {
+  $("body").css("display", "block");
+};
+window.onload = load;
+
 function animChecking() {
   anim = false;
   setTimeout(function() {
