@@ -4,23 +4,27 @@ window.anim = true;
 function animChecking() {
   setTimeout(function() {
     anim = true;
-  }, 1000);
+  }, 1100);
 }
 window.onkeydown = function(e) {
   switch (e.which) {
     case 38: // up
       if (anim) {
-        anim = false;
-        backSection();
-        animChecking();
+        if (!($(".active").data("page") == 1)) {
+          anim = false;
+          backSection();
+          animChecking();
+        }
       }
       break;
 
     case 40: // down
       if (anim) {
-        anim = false;
-        animChecking();
-        nextSection();
+        if ($(".active").data("page") != 3) {
+          anim = false;
+          animChecking();
+          nextSection();
+        }
       }
       break;
 
@@ -82,7 +86,7 @@ function backSection() {
     $(id).removeClass("anim-down-lier back");
     $(".active").removeClass("active");
     $(id).addClass("active");
-  }, 1000);
+  }, 1100);
 }
 
 window.addEventListener("touchend", processTouchend, false);
