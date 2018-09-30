@@ -24,41 +24,58 @@ header {
 /* Backgrounds */
 
 .bg-mountain {
-  position: absolute;
   height: 100vh;
   width: 100vw;
+  position: absolute;
   background: url(./img/bg-mountain.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: 50%;
   z-index: 1;
-  -webkit-animation: bg-mountain-move 1s;
-  animation: bg-mountain-move 1s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  left: -30vw;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
 }
 
 .bg-road {
-  position: absolute;
   height: 100vh;
   width: 104vw;
+  position: absolute;
   background: url(./img/bg-road.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: 80%;
   z-index: 2;
-  -webkit-animation: bg-road-move 1s;
-  animation: bg-road-move 1s;
-  -webkit-animation-fill-mode: forwards;
+}
+
+.home .bg-mountain {
+  left: -40vw;
+}
+
+.home .bg-road {
+  left: -4vw;
+}
+
+.services .bg-mountain {
+  left: -46vw;
+}
+
+.services .bg-road {
+  left: -14vw;
+  width: 114vw;
+  height: 110vh;
+}
+
+.bg-mountain-home {
+  animation: bg-mountain-home-move 0.5s;
   animation-fill-mode: forwards;
-  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
 }
 
-@-webkit-keyframes bg-mountain-move {
+.bg-road-home {
+  animation: bg-road-home-move 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes bg-mountain-home-move {
   from {
     left: -30vw;
   }
@@ -67,16 +84,7 @@ header {
   }
 }
 
-@keyframes bg-mountain-move {
-  from {
-    left: -30vw;
-  }
-  to {
-    left: -40vw;
-  }
-}
-
-@-webkit-keyframes bg-road-move {
+@keyframes bg-road-home-move {
   from {
     left: 0vw;
   }
@@ -85,11 +93,70 @@ header {
   }
 }
 
-@keyframes bg-road-move {
+.bg-mountain-services {
+  animation: bg-mountain-move-services 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+.bg-road-services {
+  animation: bg-road-move-services 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes bg-mountain-move-services {
   from {
-    left: 0vw;
+    left: -40vw;
   }
   to {
+    left: -46vw;
+  }
+}
+
+@keyframes bg-road-move-services {
+  from {
+    width: 104vw;
+    height: 100vh;
+    left: -4vw;
+  }
+  to {
+    width: 114vw;
+    height: 110vh;
+    left: -14vw;
+  }
+}
+
+.bg-mountain-services-back {
+  animation: bg-mountain-move-services-back 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+.bg-road-services-back {
+  animation: bg-road-move-services-back 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes bg-mountain-move-services-back {
+  from {
+    left: -46vw;
+  }
+  to {
+    left: -40vw;
+  }
+}
+
+@keyframes bg-road-move-services-back {
+  from {
+    width: 114vw;
+    height: 110vh;
+    left: -14vw;
+  }
+  to {
+    width: 104vw;
+    height: 100vh;
     left: -4vw;
   }
 }
@@ -100,30 +167,14 @@ nav {
   position: relative;
   z-index: 1000;
   color: #000;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   padding: 15px 0;
   opacity: 1;
-  -webkit-animation: nav-opacity 0.6s;
   animation: nav-opacity 0.6s;
-  -webkit-animation-delay: 1;
   animation-delay: 1;
-  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   height: 60px;
-}
-
-@-webkit-keyframes nav-opacity {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 @keyframes nav-opacity {
@@ -140,25 +191,23 @@ nav .logo {
   margin-left: 5%;
 }
 nav ul {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   margin: 0 10%;
+  color: white;
 }
 
 nav ul li {
   list-style: none;
   margin: 0 10px;
   cursor: pointer;
-  color: pink;
+}
+
+.inactive {
+  opacity: 0.5;
 }
 
 nav .search {
   margin: 0 10%;
-}
-
-.services {
-  background: blue;
 }
 
 .contact {
@@ -176,45 +225,27 @@ section {
 .anim-down-lier {
   display: block;
   left: 0;
-  -webkit-animation: down-lier 1s;
-  animation: down-lier 1s;
-  -webkit-animation-fill-mode: forwards;
+  animation: down-lier 0.8s;
   animation-fill-mode: forwards;
-  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
 }
 
 .anim-up-lier {
   display: block;
   left: 100%;
-  -webkit-animation: up-lier 1s;
-  animation: up-lier 1s;
-  -webkit-animation-fill-mode: forwards;
+  animation: up-lier 0.8s;
   animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-out;
   animation-timing-function: ease-out;
 }
 
 .back {
   animation-direction: reverse;
-  -webkit-animation-fill-mode: none;
   animation-fill-mode: none;
-  -webkit-animation-timing-function: ease-in;
   animation-timing-function: ease-in;
 }
 
 .active {
   display: block;
-}
-
-@-webkit-keyframes up-lier {
-  from {
-    left: 100%;
-  }
-
-  to {
-    left: 0;
-  }
 }
 
 @keyframes up-lier {
@@ -224,16 +255,6 @@ section {
 
   to {
     left: 0;
-  }
-}
-
-@-webkit-keyframes down-lier {
-  from {
-    left: 0%;
-  }
-
-  to {
-    left: -20%;
   }
 }
 
@@ -248,32 +269,36 @@ section {
 }
 
 .bg-mountain-down {
-  -webkit-animation: none;
   animation: none;
   left: -40vw;
 }
 .bg-road-down {
-  -webkit-animation: bg-road-move-down-lier 1s;
   animation: bg-road-move-down-lier 1s;
-  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
-}
-
-@-webkit-keyframes bg-road-move-down-lier {
-  from {
-    left: -4vw;
-  }
-
-  to {
-    left: -14vw;
-  }
+  left: -14vw;
 }
 
 @keyframes bg-road-move-down-lier {
   from {
-    left: -4vw;
+    left: -14vw;
+  }
+
+  to {
+    left: -30vw;
+  }
+}
+
+.bg-road-down-back {
+  animation: bg-road-move-down-lier-back 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  left: -14vw;
+}
+
+@keyframes bg-road-move-down-lier-back {
+  from {
+    left: -30vw;
   }
 
   to {

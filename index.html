@@ -12,16 +12,19 @@
 </head>
 
 <body>
+
     <header>
+
         <div class="container">
             <nav>
                 <div class="logo">
                     <img src="./img/logo.png" alt="logo">
                 </div>
                 <ul>
-                    <li class="item" data-page="1">Home</li>
-                    <li class="item" data-page="2">Services</li>
-                    <li class="item" data-page="3">Contact Us</li>
+                    <li class="item active-item" data-page="1" data-page-for-click="home">Home</li>
+                    <li class="item" data-page="1" data-page-for-click="services">Services</li>
+                    <li class="item inactive" data-page="0">Generate Cupon</li>
+                    <li class="item" data-page="2">Contact Us</li>
                 </ul>
                 <div class="search">
                     <img src="./img/search.png" alt="search">
@@ -30,15 +33,12 @@
         </div>
     </header>
 
-    <section id="p1" class="active" data-page="1">
-        <div class="bg-mountain"></div>
-        <div class="bg-road"></div>
+    <section id="p1" class="active home" data-page="1">
+        <div class="bg-mountain bg-mountain-home"></div>
+        <div class="bg-road bg-road-home"></div>
     </section>
 
-    <section id="p2" class="services" data-page="2">
-    </section>
-
-    <section id="p3" class="contact" data-page="3">
+    <section id="p2" class="contact" data-page="2">
     </section>
 
 

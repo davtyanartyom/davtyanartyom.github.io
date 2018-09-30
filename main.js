@@ -3,8 +3,9 @@ window.onload = function() {
 };
 
 function setUpEvents() {
-  window.processing = false;
-  window.anim = true;
+  window.processing = true;
+  window.anim = false;
+  animChecking();
 
   function animChecking() {
     anim = false;
@@ -19,14 +20,10 @@ function setUpEvents() {
       animChecking();
       switch (e.which) {
         case 38: // up
-          if (!($(".active").data("page") == 1)) {
-            backSection();
-          }
+          checkBack();
           break;
         case 40: // down
-          if ($(".active").data("page") != 3) {
-            nextSection();
-          }
+          checkNext();
           break;
         default:
           return;
@@ -36,25 +33,42 @@ function setUpEvents() {
 
   // Scrolling
   window.onwheel = function(e) {
-    if (anim) {
-      animChecking();
-      if (processing === false) {
-        processing = true;
+    console.log(processing);
+    if (processing === true) {
+      if (anim) {
+        animChecking();
+        processing = false;
         if (e.deltaY > 0) {
-          if ($(".active").data("page") != 3) {
-            nextSection();
-          }
+          checkNext();
         } else {
-          if (!($(".active").data("page") == 1)) {
-            backSection();
-          }
+          checkBack();
         }
         setTimeout(function() {
-          processing = false;
-        }, 1100);
+          processing = true;
+        }, 2000);
       }
     }
   };
+
+  function checkNext() {
+    if ($(".active").hasClass("home")) {
+      fromHomeToService();
+    } else {
+      if ($(".active").data("page") != 2) {
+        nextSection();
+      }
+    }
+  }
+
+  function checkBack() {
+    if ($(".active").data("page") == 1 && $(".active").hasClass("services")) {
+      fromServiceToHome();
+    } else {
+      if (!$(".active").hasClass("home")) {
+        backSection();
+      }
+    }
+  }
 
   function nextSection() {
     $(".active").addClass("anim-down-lier");
@@ -83,6 +97,7 @@ function setUpEvents() {
     page--;
     if (page == 1) {
       $(".bg-mountain").addClass("bg-mountain-down");
+      $(".bg-road").addClass("bg-road-down-back");
     }
     var id = "#p" + page;
     $(id).addClass("anim-down-lier back");
@@ -91,6 +106,33 @@ function setUpEvents() {
       $(id).removeClass("anim-down-lier back");
       $(".active").removeClass("active");
       $(id).addClass("active");
+      $(".bg-road").removeClass("bg-road-down-back");
+      $(".bg-mountain").removeClass("bg-mountain-down");
+    }, 1100);
+  }
+
+  function fromHomeToService() {
+    $(".active").removeClass("home");
+    $(".active").addClass("services");
+    $(".bg-mountain").removeClass("bg-mountain-home");
+    $(".bg-road").removeClass("bg-road-home");
+    $(".bg-mountain").addClass("bg-mountain-services");
+    $(".bg-road").addClass("bg-road-services");
+    setTimeout(function() {
+      $(".bg-mountain").removeClass("bg-mountain-services");
+      $(".bg-road").removeClass("bg-road-services");
+    }, 1100);
+  }
+
+  function fromServiceToHome() {
+    $(".active").removeClass("services");
+    $(".active").addClass("home");
+    $(".bg-mountain").addClass("bg-mountain-services-back");
+    $(".bg-road").addClass("bg-road-services-back");
+
+    setTimeout(function() {
+      $(".bg-mountain").removeClass("bg-mountain-services-back");
+      $(".bg-road").removeClass("bg-road-services-back");
     }, 1100);
   }
 
@@ -133,7 +175,7 @@ function setUpEvents() {
       clickChecking($(this).data("page"));
     }
   });
-
+  /*
   function clickChecking(clickedPage) {
     if (clickedPage == 0) {
       return;
@@ -142,6 +184,21 @@ function setUpEvents() {
     var currentPage = $(".active").data("page");
 
     if (clickedPage == currentPage) {
+      if (clickedPage == 1) {
+        var clickData = $(this).data("page-for-click");
+        var clickDataActive = $(".active-item").data("page-for-click");
+        if (clickData == "home" && clickDataActive == "services") {
+          fromHomeToService();
+
+          return;
+        }
+        if (clickData == "services" && clickDataActive == "home") {
+          fromServiceToHome();
+
+          return;
+        }
+      }
+    } else {
       return;
     }
 
@@ -185,5 +242,5 @@ function setUpEvents() {
       $(".active").removeClass("active");
       $(id).addClass("active");
     }, 1100);
-  }
+  }*/
 }
