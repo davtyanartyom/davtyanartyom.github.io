@@ -16,10 +16,12 @@ function setUpEvents() {
 
   // Up key and Down key
   window.onkeydown = function(e) {
+    console.log(1111111);
     if (anim) {
       animChecking();
       switch (e.which) {
         case 38: // up
+          console.log(2222222);
           checkBack();
           break;
         case 40: // down

@@ -193,13 +193,13 @@ nav .logo {
 nav ul {
   display: inline-flex;
   margin: 0 10%;
-  color: white;
 }
 
 nav ul li {
   list-style: none;
   margin: 0 10px;
   cursor: pointer;
+  color: red;
 }
 
 .inactive {
