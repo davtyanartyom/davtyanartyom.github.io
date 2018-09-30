@@ -64,13 +64,13 @@ header {
 }
 
 .bg-mountain-home {
-  animation: bg-mountain-home-move 0.5s;
+  animation: bg-mountain-home-move 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
 }
 
 .bg-road-home {
-  animation: bg-road-home-move 0.5s;
+  animation: bg-road-home-move 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
 }
