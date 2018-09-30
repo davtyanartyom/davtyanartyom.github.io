@@ -1,6 +1,5 @@
 window.onload = function() {
   setUpEvents();
-  $("body").css("display", "block");
 };
 
 function setUpEvents() {
@@ -132,5 +131,61 @@ function setUpEvents() {
         }
       }
     }
+  }
+  $(".item").click(function() {
+    clickChecking($(this).data("page"));
+  });
+
+  function clickChecking(clickedPage) {
+    if (clickedPage == 0) {
+      return;
+    }
+
+    var currentPage = $(".active").data("page");
+
+    if (clickedPage == currentPage) {
+      return;
+    }
+
+    if (currentPage < clickedPage) {
+      nextClickedPage(clickedPage, currentPage);
+    } else {
+      backClickedPage(clickedPage, currentPage);
+    }
+  }
+
+  function nextClickedPage(clicked, current) {
+    $(".active").addClass("anim-down-lier");
+
+    if (current == 1) {
+      $(".bg-road").addClass("bg-road-down");
+    }
+
+    var id = "#p" + clicked;
+    $(id).addClass("anim-up-lier");
+    setTimeout(function() {
+      $(".bg-road").removeClass("bg-road-down");
+      $(".bg-mountain").removeClass("bg-mountain-down");
+      $(".active").removeClass("anim-down-lier");
+      $(id).removeClass("anim-up-lier");
+      $(".active").removeClass("active");
+      $(id).addClass("active");
+    }, 1100);
+  }
+
+  function backClickedPage(clicked, current) {
+    $(".active").addClass("anim-up-lier back");
+
+    if (current == 1) {
+      $(".bg-mountain").addClass("bg-mountain-down");
+    }
+    var id = "#p" + clicked;
+    $(id).addClass("anim-down-lier back");
+    setTimeout(function() {
+      $(".active").removeClass("anim-up-lier back");
+      $(id).removeClass("anim-down-lier back");
+      $(".active").removeClass("active");
+      $(id).addClass("active");
+    }, 1100);
   }
 }
