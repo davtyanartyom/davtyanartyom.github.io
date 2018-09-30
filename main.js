@@ -12,52 +12,47 @@ function setUpEvents() {
       anim = true;
     }, 1200);
   }
+
+  // Up key and Down key
   window.onkeydown = function(e) {
-    switch (e.which) {
-      case 38: // up
-        if (anim) {
+    if (anim) {
+      animChecking();
+      switch (e.which) {
+        case 38: // up
           if (!($(".active").data("page") == 1)) {
             backSection();
-            animChecking();
           }
-        }
-        break;
-
-      case 40: // down
-        if (anim) {
+          break;
+        case 40: // down
           if ($(".active").data("page") != 3) {
-            animChecking();
             nextSection();
           }
-        }
-        break;
-
-      default:
-        return;
+          break;
+        default:
+          return;
+      }
     }
   };
 
+  // Scrolling
   window.onwheel = function(e) {
-    if (processing === false) {
-      processing = true;
-      if (e.deltaY > 0) {
-        if ($(".active").data("page") != 3) {
-          if (anim) {
-            animChecking();
+    if (anim) {
+      animChecking();
+      if (processing === false) {
+        processing = true;
+        if (e.deltaY > 0) {
+          if ($(".active").data("page") != 3) {
             nextSection();
           }
-        }
-      } else {
-        if (!($(".active").data("page") == 1)) {
-          if (anim) {
-            animChecking();
+        } else {
+          if (!($(".active").data("page") == 1)) {
             backSection();
           }
         }
+        setTimeout(function() {
+          processing = false;
+        }, 1100);
       }
-      setTimeout(function() {
-        processing = false;
-      }, 1100);
     }
   };
 
@@ -99,6 +94,7 @@ function setUpEvents() {
     }, 1100);
   }
 
+  // Scrolling for mobile
   window.addEventListener("touchend", processTouchend, false);
   window.addEventListener("touchstart", processTouchstart, false);
 
@@ -116,24 +112,26 @@ function setUpEvents() {
 
   function checkingPoints() {
     var check = touchEndPoint - touchStartPoint;
-    if (check > 0) {
-      if (!($(".active").data("page") == 1)) {
-        if (anim) {
-          animChecking();
+    if (anim) {
+      animChecking();
+      if (check > 0) {
+        if (!($(".active").data("page") == 1)) {
           backSection();
         }
-      }
-    } else {
-      if ($(".active").data("page") != 3) {
-        if (anim) {
-          animChecking();
+      } else {
+        if ($(".active").data("page") != 3) {
           nextSection();
         }
       }
     }
   }
+
+  // Clik Nav Item
   $(".item").click(function() {
-    clickChecking($(this).data("page"));
+    if (anim) {
+      animChecking();
+      clickChecking($(this).data("page"));
+    }
   });
 
   function clickChecking(clickedPage) {
