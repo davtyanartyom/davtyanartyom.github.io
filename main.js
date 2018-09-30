@@ -35,7 +35,6 @@ function setUpEvents() {
 
   // Scrolling
   window.onwheel = function(e) {
-    console.log(processing);
     if (processing === true) {
       if (anim) {
         animChecking();
