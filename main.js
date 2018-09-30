@@ -16,12 +16,10 @@ function setUpEvents() {
 
   // Up key and Down key
   window.onkeydown = function(e) {
-    console.log(1111111);
     if (anim) {
       animChecking();
       switch (e.which) {
         case 38: // up
-          console.log(2222222);
           checkBack();
           break;
         case 40: // down
@@ -173,75 +171,134 @@ function setUpEvents() {
   $(".item").click(function() {
     if (anim) {
       animChecking();
-      clickChecking($(this).data("page"));
+      clickChecking($(this).data("page"), this);
     }
   });
-  /*
-  function clickChecking(clickedPage) {
+
+  function clickChecking(clickedPage, itemThis) {
     if (clickedPage == 0) {
       return;
     }
 
     var currentPage = $(".active").data("page");
 
-    if (clickedPage == currentPage) {
-      if (clickedPage == 1) {
-        var clickData = $(this).data("page-for-click");
-        var clickDataActive = $(".active-item").data("page-for-click");
-        if (clickData == "home" && clickDataActive == "services") {
-          fromHomeToService();
-
-          return;
-        }
-        if (clickData == "services" && clickDataActive == "home") {
-          fromServiceToHome();
-
-          return;
-        }
-      }
-    } else {
+    if (
+      $(itemThis).hasClass("item-home") &&
+      $(".item-active").hasClass("item-services")
+    ) {
+      fromServiceToHome();
+      activeItem(itemThis);
+      return;
+    }
+    if (
+      $(itemThis).hasClass("item-services") &&
+      $(".item-active").hasClass("item-home")
+    ) {
+      fromHomeToService();
+      activeItem(itemThis);
+      return;
+    }
+    if (
+      $(itemThis).hasClass("item-home") &&
+      $(".item-active").hasClass("item-contact")
+    ) {
+      fromContactToHome();
+      activeItem(itemThis);
       return;
     }
 
+    if (
+      $(itemThis).hasClass("item-contact") &&
+      $(".item-active").hasClass("item-home")
+    ) {
+      fromHomeToContact(clickedPage, currentPage);
+      activeItem(itemThis);
+      return;
+    }
+
+    if (clickedPage == currentPage) {
+      return;
+    }
+
+    var x = "#p" + $(itemThis).data("page");
+
     if (currentPage < clickedPage) {
-      nextClickedPage(clickedPage, currentPage);
+      nextClickedPage($(".active"), $(x));
+      activeItem(itemThis);
     } else {
-      backClickedPage(clickedPage, currentPage);
+      backClickedPage($(".active"), $(x));
+      activeItem(itemThis);
     }
   }
 
-  function nextClickedPage(clicked, current) {
-    $(".active").addClass("anim-down-lier");
+  function activeItem(itemThis) {
+    $(".item-active").removeClass("item-active");
+    $(itemThis).addClass("item-active");
+  }
 
-    if (current == 1) {
-      $(".bg-road").addClass("bg-road-down");
-    }
+  function nextClickedPage(currentPage, nextPage) {
+    currentPage.addClass("anim-down-lier");
+    nextPage.addClass("anim-up-lier");
+    currentPage.removeClass("active");
+    nextPage.addClass("active");
+    $(".bg-road").addClass("bg-road-down");
 
-    var id = "#p" + clicked;
-    $(id).addClass("anim-up-lier");
     setTimeout(function() {
+      currentPage.removeClass("anim-down-lier");
+      nextPage.removeClass("anim-up-lier");
       $(".bg-road").removeClass("bg-road-down");
-      $(".bg-mountain").removeClass("bg-mountain-down");
-      $(".active").removeClass("anim-down-lier");
-      $(id).removeClass("anim-up-lier");
-      $(".active").removeClass("active");
-      $(id).addClass("active");
     }, 1100);
   }
 
-  function backClickedPage(clicked, current) {
-    $(".active").addClass("anim-up-lier back");
+  function backClickedPage(currentPage, nextPage) {
+    currentPage.addClass("anim-up-lier back");
+    nextPage.addClass("anim-down-lier back");
+    currentPage.removeClass("active");
+    nextPage.addClass("active");
+    nextPage.addClass("services");
+    $(".bg-road").addClass("bg-road-down-back");
 
-    if (current == 1) {
-      $(".bg-mountain").addClass("bg-mountain-down");
-    }
-    var id = "#p" + clicked;
-    $(id).addClass("anim-down-lier back");
     setTimeout(function() {
-      $(".active").removeClass("anim-up-lier back");
-      $(id).removeClass("anim-down-lier back");
-      $(".active").removeClass("active");
-      $(id).addClass("active");
+      currentPage.removeClass("anim-up-lier back");
+      nextPage.removeClass("anim-down-lier back");
+      $(".bg-road").removeClass("bg-road-down-back");
     }, 1100);
-  }*/
+  }
+
+  function fromHomeToContact() {
+    $("#p1").addClass("anim-down-lier");
+    $(".bg-road").addClass("bg-road-down-for-contact");
+    $("#p2").addClass("anim-up-lier");
+    $("#p2").addClass("active");
+    $("#p1").removeClass("home");
+    $("#p1").removeClass("services");
+    $("#p1").addClass("home");
+
+    setTimeout(function() {
+      $("#p1").removeClass("active");
+      $("#p1").removeClass("anim-down-lier");
+      $(".bg-road").removeClass("bg-road-down-for-contact");
+      $("#p2").removeClass("anim-up-lier");
+      $(".bg-road").removeClass("bg-road-home");
+      $("#p1").removeClass("home");
+      $("#p1").removeClass("services");
+    }, 1100);
+  }
+
+  function fromContactToHome() {
+    $("#p1").removeClass("services");
+    $(".bg-road").removeClass("bg-road-home");
+    $("#p2").addClass("anim-up-lier back");
+    $(".bg-road").addClass("bg-road-down-back-for-contact");
+    $("#p1").addClass("anim-down-lier back");
+    $("#p2").removeClass("active");
+    $("#p1").addClass("active");
+    $("#p1").addClass("home");
+
+    setTimeout(function() {
+      $("#p1").removeClass("anim-down-lier back");
+      $(".bg-road").removeClass("bg-road-down-back-for-contact");
+      $("#p2").removeClass("anim-up-lier back");
+    }, 1100);
+  }
 }

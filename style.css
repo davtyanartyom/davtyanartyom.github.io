@@ -193,13 +193,13 @@ nav .logo {
 nav ul {
   display: inline-flex;
   margin: 0 10%;
+  color: white;
 }
 
 nav ul li {
   list-style: none;
   margin: 0 10px;
   cursor: pointer;
-  color: blue;
 }
 
 .inactive {
@@ -211,7 +211,7 @@ nav .search {
 }
 
 .contact {
-  background: red;
+  background: yellow;
 }
 
 section {
@@ -303,5 +303,39 @@ section {
 
   to {
     left: -14vw;
+  }
+}
+
+.bg-road-down-for-contact {
+  animation: bg-road-move-down-lier-for-contact 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  left: -14vw;
+}
+
+@keyframes bg-road-move-down-lier-for-contact {
+  from {
+    left: -4vw;
+  }
+
+  to {
+    left: -14vw;
+  }
+}
+
+.bg-road-down-back-for-contact {
+  animation: bg-road-move-down-lier-back-for-contact 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  left: -14vw;
+}
+
+@keyframes bg-road-move-down-lier-back-for-contact {
+  from {
+    left: -14vw;
+  }
+
+  to {
+    left: -4vw;
   }
 }
